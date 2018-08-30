@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+
+
+
+</head>
+
+<body>
+
+
+    <script>
+        var api = "YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
+        var userInput = "San Diego"
+
+        var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?" + userInput + "&size=1&apikey=" + api
+        // AJAX call per gif
+        $(document).on(load){
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+                .then(function (response) {
+                    console.log(response);
+                    var results = response.data;
+
+                })
+        }
+    </script>
+</body>
+
+</html>
