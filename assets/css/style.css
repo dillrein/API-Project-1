@@ -22,13 +22,23 @@ h2 {
     letter-spacing: -1px;
     color: white;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 70px;
 }
 
 nav {
-    width: 500px;
-    background-color:rgb(184, 184, 184);
+    width: 300px;
+    background-color:rgb(40, 40, 40);
     margin: 0 auto;
+}
+
+form {
+    font-size: 10px;
+}
+
+button {
+    width: 300px;
+    background-color: white;
+    color: black;
 }
 
 
