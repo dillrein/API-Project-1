@@ -1,5 +1,4 @@
-
-$("submitButton").on("click", function(){
-    href= "/Users/nicolabarry/Desktop/UCI_Class/Homework/API-Project/results.html";
+$(".btn waves-effect waves-light").on("click", function(){
+    $("#submitButton").attr('href', "results.html");
     console.log('Test');
  });
