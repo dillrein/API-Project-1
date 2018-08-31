@@ -1,6 +1,6 @@
 
-$("submitButton").on("click", function(){
-    href= "/Users/nicolabarry/Desktop/UCI_Class/Homework/API-Project/results.html";
+$(".material-icons").on("click", function(){
+    $("#enter-link").attr('href', "search.html");
     console.log('Test');
  });
 
