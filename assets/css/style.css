@@ -1,44 +1,43 @@
 body {
-    background-image: url("/Users/nicolabarry/Desktop/UCI_Class/Homework/API-Project/assets/images/dominic-hampton-447559-unsplash.jpg");
-    background-position: fixed;
-    background-size: cover;
+        background-image: url("../images/bimage.jpg");
+        background-position: fixed;
+        background-size: cover;
+        
+    }
+    h1 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 50px;
+        text-transform: uppercase;
+        font-weight: bolder;
+        letter-spacing: -4px;
+        padding-left: 30px;
+        color: white;
+        
+    }
+    h2 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+        font-weight: lighter;
+        letter-spacing: -1px;
+        color: white;
+        text-align: center;
+        margin-top: 100px;
+    }
     
-}
-
-h1 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 50px;
-    text-transform: uppercase;
-    font-weight: bolder;
-    letter-spacing: -4px;
-    padding-left: 30px;
-    color: white;
-}
-
-h2 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-    font-weight: lighter;
-    letter-spacing: -1px;
-    color: white;
-    text-align: center;
-    margin-top: 70px;
-}
-
-nav {
-    width: 300px;
-    background-color:rgb(40, 40, 40);
-    margin: 0 auto;
-}
-
-form {
-    font-size: 10px;
-}
-
-button {
-    width: 300px;
-    background-color: white;
-    color: black;
-}
-
+    nav {
+        width: 500px;
+        background-color:rgb(40, 40, 40);
+        margin: 0 auto;
+    }
+    .footer-copyright {
+        bottom: 0;
+        font-size: 14px;
+        text-align: center;
+        background: rgba(69, 78, 92, 0.555);
+        color: rgb(0, 1, 2); 
+        clear: both;
+        position: fixed;
+        width: 100%;
+        
+    }
 
