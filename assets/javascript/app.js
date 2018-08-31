@@ -1,4 +1,6 @@
-$(".material-icons").on("click", function(){
-    href= "search.html";
+
+$("submitButton").on("click", function(){
+    href= "/Users/nicolabarry/Desktop/UCI_Class/Homework/API-Project/results.html";
     console.log('Test');
-});
+ });
+
