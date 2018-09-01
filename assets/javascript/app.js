@@ -1,16 +1,27 @@
-//search button function
+  //search button function
 $(".material-icons").on("click", function(){
+
+    //grabbing input from search bar
+    var input = $("#search").val().trim();
+    console.log(input);
+    
+   
+
+    //sending to search page
     $("#enter-link").attr('href', "search.html");
     
+    ticketMaster(input);
  });
-
- var ticketMasterApi = "YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
- var userInput = ""
-
- var tmQueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=" + userInput + "&apikey=YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
-
+ 
+ // ticketMasterApi = "YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
+  
  // Ticket Master API
- function ticketMaster () {
+ function ticketMaster (input) {
+    var userInput = input
+     console.log("test");
+    var tmQueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=" + userInput + "&apikey=YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
+        console.log(tmQueryURL)
+
      $.ajax({
          url: tmQueryURL,
          method: "GET",
@@ -75,3 +86,6 @@ $(".material-icons").on("click", function(){
 
 
  }
+
+
+ 
