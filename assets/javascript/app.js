@@ -96,11 +96,6 @@ function test(){
 
  }
 
-
-
-  
-
-
 //firebase
 // var config = {
 //     apiKey: "AIzaSyBSg8DTI13_GdJd3GbIff1LoyPEwtuybxE",
