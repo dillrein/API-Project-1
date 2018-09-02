@@ -10,13 +10,14 @@ $(".material-icons").on("click", function(){
     //sending to search page
     $("#enter-link").attr('href', "search.html");
     
-    ticketMaster(input);
- });
+    
+ }).then.ticketMaster(input);
  
  // ticketMasterApi = "YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
   
  // Ticket Master API
- function ticketMaster (input) {
+ function ticketMaster () {
+     console.log(input)
     var userInput = input
      console.log("test");
     var tmQueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=" + userInput + "&apikey=YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
@@ -87,5 +88,14 @@ $(".material-icons").on("click", function(){
 
  }
 
-
+//firebase
+var config = {
+    apiKey: "AIzaSyBSg8DTI13_GdJd3GbIff1LoyPEwtuybxE",
+    authDomain: "api-project-4f920.firebaseapp.com",
+    databaseURL: "https://api-project-4f920.firebaseio.com",
+    projectId: "api-project-4f920",
+    storageBucket: "api-project-4f920.appspot.com",
+    messagingSenderId: "101719166373"
+  };
+  firebase.initializeApp(config)
  
