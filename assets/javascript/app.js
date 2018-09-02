@@ -1,25 +1,33 @@
   //search button function
-$(".material-icons").on("click", function(){
+$(".material-icons").on("click", function(event){
 
     //grabbing input from search bar
-    var input = $("#search").val().trim();
-    console.log(input);
-    
-   
+    var userInput = $("#search").val().trim();
+    console.log(userInput);
 
-    //sending to search page
+    // Clear absolutely everything stored in localStorage using localStorage.clear()
+    localStorage.clear();
+
+    // Store the username into localStorage using "localStorage.setItem"
+    localStorage.setItem("city", userInput);
+
+     //sending to search page
     $("#enter-link").attr('href', "search.html");
     
-    
- }).then.ticketMaster(input);
+ });
  
  // ticketMasterApi = "YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
   
  // Ticket Master API
+
+function test(){
+    console.log("test test");
+}
+ 
  function ticketMaster () {
-     console.log(input)
-    var userInput = input
-     console.log("test");
+    console.log("ticketMaster Start")
+    var userInput = localStorage.getItem("city")
+
     var tmQueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=" + userInput + "&apikey=YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
         console.log(tmQueryURL)
 
@@ -88,14 +96,19 @@ $(".material-icons").on("click", function(){
 
  }
 
+
+
+  
+
+
 //firebase
-var config = {
-    apiKey: "AIzaSyBSg8DTI13_GdJd3GbIff1LoyPEwtuybxE",
-    authDomain: "api-project-4f920.firebaseapp.com",
-    databaseURL: "https://api-project-4f920.firebaseio.com",
-    projectId: "api-project-4f920",
-    storageBucket: "api-project-4f920.appspot.com",
-    messagingSenderId: "101719166373"
-  };
-  firebase.initializeApp(config)
+// var config = {
+//     apiKey: "AIzaSyBSg8DTI13_GdJd3GbIff1LoyPEwtuybxE",
+//     authDomain: "api-project-4f920.firebaseapp.com",
+//     databaseURL: "https://api-project-4f920.firebaseio.com",
+//     projectId: "api-project-4f920",
+//     storageBucket: "api-project-4f920.appspot.com",
+//     messagingSenderId: "101719166373"
+//   };
+//   firebase.initializeApp(config)
  
