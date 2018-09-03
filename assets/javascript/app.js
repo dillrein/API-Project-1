@@ -140,7 +140,6 @@ function geocodeAddress(geocoder, resultsMap) {
 
 var eventAddress;
 
-
 //firebase
 // var config = {
 //     apiKey: "AIzaSyBSg8DTI13_GdJd3GbIff1LoyPEwtuybxE",
@@ -150,4 +149,5 @@ var eventAddress;
 //     storageBucket: "api-project-4f920.appspot.com",
 //     messagingSenderId: "101719166373"
 //   };
+
 //   firebase.initializeApp(config)
