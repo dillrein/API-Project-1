@@ -2,6 +2,9 @@ body {
     position: relative;
     background-color: black;
 }
+#mapDiv {
+        height: 600px;
+      }
 
 .main-wrapper {
     background-image: url("../images/bimage.jpg");
@@ -43,7 +46,6 @@ h2 {
     text-align: center;
     margin-top: 100px;
 }
-
 nav {
     width: 500px;
     background-color: rgb(40, 40, 40);

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,14 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
     <title>Document</title>
-    
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxxASExfHJ3E3zseHXZoiRc53dIAcJjYI&callback=initMap">
+    </script>
 </head>
+
 <body>
+
+
     <nav class="nav1-wrapper">
             <div class="nav1-wrapper">
               <a href="" class="brand-logo">Concert Finder</a>
@@ -19,10 +25,11 @@
             </div>
           </nav>
 
-  
-   <h2>MAP</h2>
-    <img src="assets/images/map.jpg"  class="auth-image" alt="MAP">
-    <div id="drop" onload="test()"></div>
+ 
+    <h2>MAP</h2>
+    <div id="mapDiv">THIS IS A DIV FOR MAP</div>
+    <div id="drop">
+    </div>
       
       
     <div class="footer-copyright">
@@ -39,9 +46,11 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="assets/javascript/app.js"></script>
     <script>
-    // functions being called
-    test();
-    ticketMaster();
+        // functions being called
+        console.log("before calling ticketMaster()");
+        ticketMaster();
+        console.log("after calling ticketMaster()");
     </script>
 </body>
+
 </html>
