@@ -11,6 +11,23 @@ $(".material-icons").on("click", function(event){
     // Store the username into localStorage using "localStorage.setItem"
     localStorage.setItem("city", userInput);
 
+         // Validation
+     /* validateForm();
+
+      function validateForm() {
+
+          $('#search').validate({ // initialize the plugin
+              rules: {
+                  field1: {
+                      required: true,
+
+                  }
+              }
+          });
+      }
+*/
+ 
+
      //sending to search page
     $("#enter-link").attr('href', "search.html");
     
