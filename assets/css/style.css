@@ -2,6 +2,9 @@ body {
     position: relative;
     background-color: black;
 }
+#mapDiv {
+        height: 600px;
+      }
 
 .main-wrapper {
     background-image: url("../images/bimage.jpg");
