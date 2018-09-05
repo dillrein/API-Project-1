@@ -1,6 +1,6 @@
-  //search button function
-$(".material-icons").on("click", function(event){
-    
+//search button function
+$(".material-icons").on("click", function (event) {
+
     //grabbing input from search bar
     var userInput = $("#search").val().trim();
     console.log(userInput);
@@ -11,24 +11,24 @@ $(".material-icons").on("click", function(event){
     // Store the username into localStorage using "localStorage.setItem"
     localStorage.setItem("city", userInput);
 
-         // Validation
-     /* validateForm();
+    // Validation
+    /* validateForm();
 
-      function validateForm() {
+     function validateForm() {
 
-          $('#search').validate({ // initialize the plugin
-              rules: {
-                  field1: {
-                      required: true,
+         $('#search').validate({ // initialize the plugin
+             rules: {
+                 field1: {
+                     required: true,
 
-                  }
-              }
-          });
-      }
+                 }
+             }
+         });
+     }
 */
- 
 
-     //sending to search page
+
+    //sending to search page
 
     $("#enter-link").attr('href', "search.html");
 
@@ -37,28 +37,25 @@ $(".material-icons").on("click", function(event){
 });
 
 // ticketMasterApi = "YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
-
-// Ticket Master API
-
-
+//----------------------------------Ticket Master-----------------------------
 function ticketMaster() {
     console.log("ticketMaster is called");
     var userInput = localStorage.getItem("city")
 
-    var tmQueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=" + userInput + "&apikey=YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
+    var tmQueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=" + userInput + "&radius=20&unit=miles&apikey=YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
     // console.log(tmQueryURL)
 
     $.ajax({
-            url: tmQueryURL,
-            method: "GET",
+        url: tmQueryURL,
+        method: "GET",
 
-        })
+    })
         .then(function (response) {
             // console.log(response);
 
 
             //function areaResults() {
-            for (i = 0; i < 5; i++) {
+            for (i = 0; i < 10; i++) {
                 // console.log(i)
                 var showsDiv = $("<div class='shows'>");
 
@@ -75,7 +72,7 @@ function ticketMaster() {
                 //STREET ADDRESS
                 eventAddress = response._embedded.events[i]._embedded.venues[0].address.line1;
                 var addressInfo = $("<p>").text(eventAddress);
-                console.log("This is event address in ticketMaster: " +eventAddress);
+                console.log("This is event address in ticketMaster: " + eventAddress);
 
 
                 //CITY
@@ -114,8 +111,7 @@ function ticketMaster() {
 }
 
 
-
-//--------------------------- ARSALAN'S SCRIPT BEGINS ---------------------------
+//--------------------------- GOOGLE BEGINS ---------------------------
 function initMap() {
     console.log("initmap is called");
     var map = new google.maps.Map(document.getElementById('mapDiv'), {
@@ -134,7 +130,7 @@ function initMap() {
 function geocodeAddress(geocoder, resultsMap) {
     //var inputAddress = eventAddress;
     console.log("geocodeAddress is called");
-    console.log("This is event address in geocode: " +eventAddress);
+    console.log("This is event address in geocode: " + eventAddress);
     geocoder.geocode({
         'address': inputAddress
     }, function (results, status) {
@@ -151,19 +147,82 @@ function geocodeAddress(geocoder, resultsMap) {
         }
     });
 }
-//--------------------------- ARSALAN'S SCRIPT ENDS ---------------------------
+//--------------------------- GOOGLE ENDS ---------------------------
 
 
 var eventAddress;
 
-//firebase
-// var config = {
-//     apiKey: "AIzaSyBSg8DTI13_GdJd3GbIff1LoyPEwtuybxE",
-//     authDomain: "api-project-4f920.firebaseapp.com",
-//     databaseURL: "https://api-project-4f920.firebaseio.com",
-//     projectId: "api-project-4f920",
-//     storageBucket: "api-project-4f920.appspot.com",
-//     messagingSenderId: "101719166373"
-//   };
 
-//   firebase.initializeApp(config)
+//-------------------------------FIREBASE------------------------------
+//firebase and page 3 functionality
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyDAB7Z37OYpxZk10-q4irdQvrQ1n7WLM9E",
+    authDomain: "group-project-1-fbce8.firebaseapp.com",
+    databaseURL: "https://group-project-1-fbce8.firebaseio.com",
+    projectId: "group-project-1-fbce8",
+    storageBucket: "group-project-1-fbce8.appspot.com",
+    messagingSenderId: "114536344919"
+  };
+  firebase.initializeApp(config);
+
+var database = firebase.database();
+
+//user input and gathering it.
+$("#addUser").on("click", function (event) {
+    //form information
+    var userName = $("#nameInput").val().trim();
+    var userLast = $("#lastInput").val().trim();
+    var userEmail = $("#emailInput").val().trim();
+    var userCity = $("#cityInput").val().trim();
+    var userMess = $("#message").val().trim();
+
+    var savedInfo = {
+        firstName: userName,
+        lastName: userLast,
+        email: userEmail,
+        city: userCity,
+        message: userMess
+    };
+
+    database.ref().push(savedInfo);
+    // Clears all of the text-boxes
+    $("#nameInput").val("");
+    $("#lastInput").val("");
+    $("#emailInput").val("");
+    $("#cityInput").val("");
+    $("#userMess").val("");
+
+});
+
+database.ref().on("child_added", function(childSnapshot) {
+    console.log(childSnapshot.val());
+  
+    //creating variable that takes info from database
+    var userName = childSnapshot.val().firstName;
+    var userLast = childSnapshot.val().lastName;
+    var userEmail = childSnapshot.val().email;
+    var userCity = childSnapshot.val().city;
+    var userMess = childSpapshot.val().message;
+
+    // console check
+    console.log(userName);
+    console.log(userLast);
+    console.log(userEmail);
+    console.log(userCity);
+    console.log(userMess)
+    
+  
+    // Create the new row
+    var newRow = $("<tr>").append(
+      $("<td>").text(userName),
+      $("<td>").text(userLast),
+      $("<td>").text(userEmail),
+      $("<td>").text(userCity),
+      $("<td>").text(userMess),
+      
+    );
+  
+    // Append the new row to the table
+    $("#employee-table > tbody").append(newRow);
+  });
