@@ -1,6 +1,7 @@
   //search button function
 $(".material-icons").on("click", function(event){
-
+    event.preventDefault();
+    
     //grabbing input from search bar
     var userInput = $("#search").val().trim();
     console.log(userInput);
