@@ -14,29 +14,29 @@ $(".material-icons").on("click", function (event) {
     localStorage.setItem("city", userInput);
 
          // Validation
-     /* validateForm();
-
-      function validateForm() {
-
-          $('#search').validate({ // initialize the plugin
-              rules: {
-                  field1: {
-                      required: true,
-
-                  }
-              }
-          });
+ /* $('#.search').validate({
+      rules:{
+          search:{
+              required: true,
+              search: true
+          }
+      },
+      messages:{
+          search:{
+              required: 'Please enter city'
+          }
       }
-*/
- 
-
+  });
+ */
      //sending to search page
 
     $("#enter-link").attr('href', "search.html");
 
 
-
 });
+
+
+
 
 // ticketMasterApi = "YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
 
