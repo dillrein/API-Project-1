@@ -1,22 +1,29 @@
 //search button event handler
 $(".material-icons").on("click", function (event) {
+    //event.preventDefault()
+    var inputValue = $('#search').val()
+    //console.log(inputValue);
+    if (inputValue !== '') {
+        console.log(inputValue);
+        //grabbing input from search bar
+        var userInput = $("#search").val().trim();
+        //console.log(userInput);
 
-    //grabbing input from search bar
-    var userInput = $("#search").val().trim();
-    console.log(userInput);
+        // Clear absolutely everything stored in localStorage using localStorage.clear()
+        localStorage.clear();
 
-    // Clear absolutely everything stored in localStorage using localStorage.clear()
-    localStorage.clear();
+        // Store the username into localStorage using "localStorage.setItem"
+        localStorage.setItem("city", userInput);
 
-    // Store the username into localStorage using "localStorage.setItem"
-    localStorage.setItem("city", userInput);
-
-    //sending to search page
-    $("#enter-link").attr('href', "search.html");
-
-
+        $("#enter-link").attr('href', "search.html");
+    } else {
+        console.log('Please enter City');
+        $("#search").attr('placeholder', 'Please enter City');
+    }
 
 });
+
+
 
 // An array to hold each venue street address upon being received from the server 
 var addressArr = [];
@@ -35,6 +42,7 @@ function ticketMaster() {
 
         })
         .then(function (response) {
+
             // Checking to see if the AJAX request has been made 
             console.log("AJAX IS CALLED");
 
@@ -144,6 +152,14 @@ function initMap() {
 
 function geocodeAddress(address) {
     var geocoder = new google.maps.Geocoder();
+   
+    geocodeAddress(geocoder, map);
+}
+
+function geocodeAddress(geocoder, resultsMap) {
+    //var inputAddress = eventAddress;
+    console.log("geocodeAddress is called");
+    console.log("This is event address in geocode: " + eventAddress);
     geocoder.geocode({
         'address': address
     }, function (results, status) {
@@ -174,8 +190,6 @@ function geocodeAddress(address) {
 //     messagingSenderId: "101719166373"
 //   };
 
-<<<<<<< HEAD
+
+
 //   firebase.initializeApp(config)
-=======
-//   firebase.initializeApp(config)
->>>>>>> 6813c9060d112103d9e75ddcbef9b98306b2e5d6

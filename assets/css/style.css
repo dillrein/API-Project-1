@@ -1,10 +1,11 @@
 body {
     position: relative;
-    background-color: black;
+    background-color: rgb(12, 12, 12);
 }
+
 #mapDiv {
-        height: 600px;
-      }
+    height: 600px;
+}
 
 .main-wrapper {
     background-image: url("../images/bimage.jpg");
@@ -13,21 +14,41 @@ body {
     height: 100vh;
 }
 
-.nav1-wrapper {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 50px;
+.nav-wrapper1{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 70px;
     text-transform: uppercase;
     font-weight: bolder;
-    letter-spacing: -3px;
+    letter-spacing: -4px;
+    background-color: rgb(12, 12, 12);
+    clear: both;
+    height: 10%;
+    width: 100%;
+    box-shadow: none;
+}
+
+#brand-logo {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 60px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    letter-spacing: -4px;
     padding-left: 30px;
     color: white;
-    background-color: rgba(69, 78, 92, 0.555);
-    clear: both;
+}
+
+#nav-mobile {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 80px;
+    text-transform: uppercase;
+    font-weight: 300;
+    padding-right: 30px;
+    letter-spacing: -1px;
 }
 
 h1 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 70px;
     text-transform: uppercase;
     font-weight: bolder;
     letter-spacing: -4px;
@@ -38,41 +59,120 @@ h1 {
 }
 
 h2 {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 30px;
-    font-weight: lighter;
+    font-weight: 300;
     letter-spacing: -1px;
     color: white;
     text-align: center;
     margin-top: 100px;
 }
+
+h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    letter-spacing: -1.5px;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+}
+
 nav {
     width: 500px;
-    background-color: rgb(40, 40, 40);
     margin: 0 auto;
+    background-color: white;
+    color: black;
 }
 
 .footer-copyright {
     bottom: 0;
     font-size: 14px;
     text-align: center;
-    background: rgba(69, 78, 92, 0.555);
     color: white;
     clear: both;
-    position: fixed;
+    position: absolute;
     width: 100%;
+    padding-top: 50px;
 }
 
 #enter-city {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     text-transform: uppercase;
     font-weight: bold;
 }
 
 #enter-link {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+p {
+    color: white;
+}
+/* table.html contact page */
+#contact-form ul {
+    margin-bottom: 10px;
+}
+
+#contact-form li {
+    margin-bottom: 10px;
+}
+
+input[type=text],
+input[type=email],
+textarea {
+    height: 35px;
+    padding: 0 15px;
+    font-size: 14px;
+    border: 1px solid rgb(230, 222, 222);
+}
+
+input[type=submit] {
+    padding: 5px 20px;
+    font-size: 18px;
+    color: rgb(230, 222, 222);
+    cursor: pointer;
+    background: #595e5d;
+    border: 15 none;
+}
+/* Table.html, table  */
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    color:white;
+    border: 2px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #695e5e;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    line-height: 15px;
+}
+
+img {
+    height: auto;
+    width: 400px;
+    float: right;
+}
+
+.shows {
+    border: 5px solid rgb(28, 28, 28);
+    padding: 10px;
+    width: 50%;
+    margin-bottom: 30px;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
 }
