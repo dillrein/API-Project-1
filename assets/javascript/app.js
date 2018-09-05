@@ -25,13 +25,12 @@ $(".material-icons").on("click", function (event) {
 
 
 
-// ticketMasterApi = "YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
-
-// Ticket Master API
-
+// An array to hold each venue street address upon being received from the server 
+var addressArr = [];
 
 function ticketMaster() {
-    console.log("ticketMaster is called");
+    // Checking to see if ticketMaster() has been called
+    console.log("TICKET MASTER IS CALLED");
     var userInput = localStorage.getItem("city")
 
     var tmQueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=" + userInput + "&apikey=YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
@@ -43,81 +42,117 @@ function ticketMaster() {
 
         })
         .then(function (response) {
-            // console.log(response);
+
+            // Checking to see if the AJAX request has been made 
+            console.log("AJAX IS CALLED");
+
+            // Making sure the response does contain data
+            if (response._embedded !== undefined) {
+                for (i = 0; i < response._embedded.events.length; i++) {
+                    var showsDiv = $("<div class='shows'>");
+
+                    //ARTIST NAME
+                    if (response._embedded.events[i].name !== undefined) {
+                        var artistName = response._embedded.events[i].name;
+                        var artistInfo = $("<p>").text(artistName);
+                    } else {
+                        console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "ARTIST NAME"');
+                    }
+
+                    //IMAGE
+                    if (response._embedded.events[i].images[1] !== undefined) {
+                        var image = response._embedded.events[i].images[1].url;
+                        var imageInfo = $("<img>").attr("src", image);
+                    } else {
+                        console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "IMAGE"');
+                    }
+
+                    //STREET ADDRESS
+                    if (response._embedded.events[i]._embedded.venues[0].address !== undefined) {
+                        var eventAddress = response._embedded.events[i]._embedded.venues[0].address.line1;
+                        var addressInfo = $("<p>").text(eventAddress);
+                        console.log("Event#" + i)
+                        console.log("STREET: " + eventAddress);
+                        addressArr.push(eventAddress);
+                    } else {
+                        console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "STREET ADDRESS"');
+                    }
 
 
-            //function areaResults() {
-            for (i = 0; i < response._embedded.events.length; i++) {
-                // console.log(i)
-                var showsDiv = $("<div class='shows'>");
-
-                //ARTIST NAME
-                var artistName = response._embedded.events[i].name;
-                var artistInfo = $("<p>").text(artistName).attr('style','font-weight:bold');
-                // console.log(artistName + " artist");
-
-                //IMAGE
-                var image = response._embedded.events[i].images[1].url;
-                var imageInfo = $("<img>").attr("src", image);
-                // console.log("image");
-
-                //STREET ADDRESS
-                eventAddress = response._embedded.events[i]._embedded.venues[0].address.line1;
-                var addressInfo = $("<p>").text(eventAddress);
-                console.log("This is event address in ticketMaster: " + eventAddress);
+                    //CITY
+                    if (response._embedded.events[i]._embedded.venues[0].city !== undefined) {
+                        var city = response._embedded.events[i]._embedded.venues[0].city.name;
+                        var cityInfo = $("<p>").text(city);
+                        console.log("CITY: " + city);
+                    } else {
+                        console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "CITY"');
+                    }
 
 
-                //CITY
-                var city = response._embedded.events[i]._embedded.venues[0].city.name;
-                var cityInfo = $("<p>").text(city);
-                // console.log(city + " city");
+                    //VENUE NAME
+                    if (response._embedded.events[i]._embedded.venues[0].name !== undefined) {
+                        var venueName = response._embedded.events[i]._embedded.venues[0].name;
+                        var venueInfo = $("<p>").text(venueName);
+                    } else {
+                        console.log('ERROR: THIS RECORD DOES NOT HAVE ANY VENUE "NAME"');
+                    }
 
-                //VENUE NAME
-                var venueName = response._embedded.events[i]._embedded.venues[0].name;
-                var venueInfo = $("<p>").text(venueName);
-                // console.log(venueName + " venue name");
+                    //STATE
+                    if (response._embedded.events[i]._embedded.venues[0].state !== undefined) {
+                        var venueState = response._embedded.events[i]._embedded.venues[0].state.name;
+                        var state = $("<p>").text(venueState);
+                        console.log("STATE: " + venueState);
+                    } else {
+                        console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "STATE"');
+                    }
 
-                //STATE
-                var venueState = response._embedded.events[i]._embedded.venues[0].state.name;
-                var state = $("<p>").text(venueState);
-                // console.log(venueState + " state");
+                    showsDiv.append(imageInfo);
+                    showsDiv.append(artistInfo);
+                    showsDiv.append(addressInfo);
+                    showsDiv.append(cityInfo);
+                    showsDiv.append(venueInfo);
+                    showsDiv.append(state);
 
+                    // Putting the entire shows above the previous showss
+                    $("#drop").append(showsDiv);
 
+                    console.log("\n");
 
-                showsDiv.append(imageInfo);
-                showsDiv.append(artistInfo);
-                showsDiv.append(addressInfo);
-                showsDiv.append(cityInfo);
-                showsDiv.append(state);
-                showsDiv.append(venueInfo);
-        
+                } // End of for 
+            } // End of if()
+            else {
 
-
-                // Putting the entire shows above the previous showss
-                $("#drop").append(showsDiv);
-
+                throw ("NO RECORD HAS BEEN RECEIVED!");
             }
-
-        });
-
-
-}
-
-
+            //--------------------------- ARSALAN'S SCRIPT BEGINS ---------------------------   
+            // This is the end of "for loop"
+            console.log("End of foor loop");
+            // Calling geocoder right upon finishing the for loop     
+            for (i = 0; i < addressArr.length; i++) {
+                console.log("EVENT#" + i + " ADDRESS FROM ARRAY: " + addressArr[i]);
+                window.setTimeout(geocodeAddress(addressArr[i]), 1000);
+            }
+            //--------------------------- ARSALAN'S SCRIPT ENDS ---------------------------
+        }); // End of AJAX
+} // End of ticketMaster()
 
 //--------------------------- ARSALAN'S SCRIPT BEGINS ---------------------------
+var map;
+
 function initMap() {
-    console.log("initmap is called");
-    var map = new google.maps.Map(document.getElementById('mapDiv'), {
-        zoom: 15,
+    console.log("INITMAP IS CALLED");
+    map = new google.maps.Map(document.getElementById('mapDiv'), {
+        zoom: 10,
         center: {
-            lat: 33.684566,
-            lng: -117.826508
+            lat: 33.640495,
+            lng: -117.844299
         }
     });
-    var geocoder = new google.maps.Geocoder();
+} // End of initMap()
 
-    // 
+function geocodeAddress(address) {
+    var geocoder = new google.maps.Geocoder();
+   
     geocodeAddress(geocoder, map);
 }
 
@@ -126,14 +161,14 @@ function geocodeAddress(geocoder, resultsMap) {
     console.log("geocodeAddress is called");
     console.log("This is event address in geocode: " + eventAddress);
     geocoder.geocode({
-        'address': inputAddress
+        'address': address
     }, function (results, status) {
         if (status === 'OK') {
             // .geometry.location property contains a LatLng object, refering the place 
             // we searched for. Retrieve it and assign it to the map's center 
-            resultsMap.setCenter(results[0].geometry.location);
+            map.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
-                map: resultsMap,
+                map: map,
                 position: results[0].geometry.location
             });
         } else {
@@ -144,7 +179,6 @@ function geocodeAddress(geocoder, resultsMap) {
 //--------------------------- ARSALAN'S SCRIPT ENDS ---------------------------
 
 
-var eventAddress;
 
 //firebase
 // var config = {
@@ -155,5 +189,7 @@ var eventAddress;
 //     storageBucket: "api-project-4f920.appspot.com",
 //     messagingSenderId: "101719166373"
 //   };
+
+
 
 //   firebase.initializeApp(config)
