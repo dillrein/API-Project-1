@@ -174,8 +174,4 @@ function geocodeAddress(address) {
 //     messagingSenderId: "101719166373"
 //   };
 
-<<<<<<< HEAD
 //   firebase.initializeApp(config)
-=======
-//   firebase.initializeApp(config)
->>>>>>> 6813c9060d112103d9e75ddcbef9b98306b2e5d6
