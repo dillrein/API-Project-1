@@ -1,6 +1,5 @@
   //search button function
 $(".material-icons").on("click", function(event){
-    event.preventDefault();
     
     //grabbing input from search bar
     var userInput = $("#search").val().trim();
@@ -59,7 +58,7 @@ function ticketMaster() {
 
 
             //function areaResults() {
-            for (i = 0; i < response._embedded.events.length; i++) {
+            for (i = 0; i < 5; i++) {
                 // console.log(i)
                 var showsDiv = $("<div class='shows'>");
 
