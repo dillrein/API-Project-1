@@ -1,43 +1,92 @@
 body {
-        background-image: url("../images/bimage.jpg");
-        background-position: fixed;
-        background-size: cover;
-        
-    }
-    h1 {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 50px;
-        text-transform: uppercase;
-        font-weight: bolder;
-        letter-spacing: -4px;
-        padding-left: 30px;
-        color: white;
-        
-    }
-    h2 {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 30px;
-        font-weight: lighter;
-        letter-spacing: -1px;
-        color: white;
-        text-align: center;
-        margin-top: 100px;
-    }
-    
-    nav {
-        width: 500px;
-        background-color:rgb(40, 40, 40);
-        margin: 0 auto;
-    }
-    .footer-copyright {
-        bottom: 0;
-        font-size: 14px;
-        text-align: center;
-        background: rgba(69, 78, 92, 0.555);
-        color: rgb(0, 1, 2); 
-        clear: both;
-        position: fixed;
-        width: 100%;
-        
-    }
+    position: relative;
+    background-color: black;
+}
+#mapDiv {
+        height: 600px;
+      }
 
+.main-wrapper {
+    background-image: url("../images/bimage.jpg");
+    background-position: fixed;
+    background-size: cover;
+    height: 100vh;
+}
+
+.nav-wrapper1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    letter-spacing: -3px;
+    padding-left: 30px;
+    color: white;
+    background-color: rgba(69, 78, 92, 0.555);
+    clear: both;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    letter-spacing: -4px;
+    padding-left: 30px;
+    color: white;
+    margin-top: 0;
+    padding-top: 100px;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: lighter;
+    letter-spacing: -1px;
+    color: white;
+    text-align: center;
+    margin-top: 100px;
+}
+
+h5{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: lighter;
+    letter-spacing: -1px;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+nav {
+    width: 500px;
+    background-color: rgb(40, 40, 40);
+    margin: 0 auto;
+}
+
+.footer-copyright {
+    bottom: 0;
+    font-size: 14px;
+    text-align: center;
+    background: rgba(69, 78, 92, 0.555);
+    color: white;
+    clear: both;
+    position: fixed;
+    width: 100%;
+}
+
+#enter-city {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#enter-link {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+p {
+    color: white;
+}
