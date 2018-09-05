@@ -1,3 +1,5 @@
+
+
 //search button event handler
 $(".material-icons").on("click", function (event) {
 
@@ -12,7 +14,7 @@ $(".material-icons").on("click", function (event) {
     localStorage.setItem("city", userInput);
 
          // Validation
- /* $('#material-icons').validate({
+ /* $('#.search').validate({
       rules:{
           search:{
               required: true,
@@ -32,6 +34,9 @@ $(".material-icons").on("click", function (event) {
 
 
 });
+
+
+
 
 // ticketMasterApi = "YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
 
@@ -109,3 +114,58 @@ function ticketMaster() {
 
 
 }
+
+
+
+//--------------------------- ARSALAN'S SCRIPT BEGINS ---------------------------
+function initMap() {
+    console.log("initmap is called");
+    var map = new google.maps.Map(document.getElementById('mapDiv'), {
+        zoom: 15,
+        center: {
+            lat: 33.684566,
+            lng: -117.826508
+        }
+    });
+    var geocoder = new google.maps.Geocoder();
+
+    // 
+    geocodeAddress(geocoder, map);
+}
+
+function geocodeAddress(geocoder, resultsMap) {
+    //var inputAddress = eventAddress;
+    console.log("geocodeAddress is called");
+    console.log("This is event address in geocode: " +eventAddress);
+    geocoder.geocode({
+        'address': inputAddress
+    }, function (results, status) {
+        if (status === 'OK') {
+            // .geometry.location property contains a LatLng object, refering the place 
+            // we searched for. Retrieve it and assign it to the map's center 
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: resultsMap,
+                position: results[0].geometry.location
+            });
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
+}
+//--------------------------- ARSALAN'S SCRIPT ENDS ---------------------------
+
+
+var eventAddress;
+
+//firebase
+// var config = {
+//     apiKey: "AIzaSyBSg8DTI13_GdJd3GbIff1LoyPEwtuybxE",
+//     authDomain: "api-project-4f920.firebaseapp.com",
+//     databaseURL: "https://api-project-4f920.firebaseio.com",
+//     projectId: "api-project-4f920",
+//     storageBucket: "api-project-4f920.appspot.com",
+//     messagingSenderId: "101719166373"
+//   };
+
+//   firebase.initializeApp(config)
