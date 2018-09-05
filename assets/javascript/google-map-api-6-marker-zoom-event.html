@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- LOADING "THE MAPS JAVASCRIPT API"  -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxxASExfHJ3E3zseHXZoiRc53dIAcJjYI&callback=initMap"
+        type="text/javascript"></script>
+    <style>
+        #mapDiv {
+            height: 600px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My First Google Map</h1>
+    <div id="mapDiv"></div>
+    <script>
+        function initMap() {
+            var mapDiv = document.getElementById("mapDiv");
+            var mapCenter = new google.maps.LatLng(51.508742, -0.120850);
+            var mapOpts = {
+                center: mapCenter,
+                zoom: 13
+            };
+            var map = new google.maps.Map(mapDiv, mapOpts);
+
+            var markerOpts = {
+                map: map,
+                position: mapCenter,
+                animation: google.maps.Animation.DROP,
+                title: "drag me",
+                draggable: true
+            };
+            var marker = new google.maps.Marker(markerOpts);
+
+            google.maps.event.addListener(marker, "click", function () {
+                map.setZoom(map.getZoom() + 1);
+            });
+        }
+    </script>
+
+</body>
+
+</html>

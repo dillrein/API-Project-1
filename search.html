@@ -1,14 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+    <title>Search</title>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxxASExfHJ3E3zseHXZoiRc53dIAcJjYI&callback=initMap">
+    </script>
 </head>
+
 <body>
-    <h2>MAP</h2>
-    <img src="assets/images/map.jpg" class="auth-image" alt="MAP">
+
+
+    <nav class="nav-wrapper1">
+            <div class="nav-wrapper1">
+              <a href="index.html" class="brand-logo">Concert Finder</a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="search.html">RESULTS</a></li>
+                <li><a href="table.html">PIN</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <h5>Concerts Near You</h5>
+    <div class="row">
+        <div class"col s12">
+        </div>
+    <div id="mapDiv">THIS IS A DIV FOR MAP</div>
+    <div id="drop">
+    </div>
+      
+    <div class="footer-copyright">
+        <div class="container">
+            © 2018 Copyright A.N.D.Y
+            <a class="grey-text text-lighten-4 right"></a>
+        </div>
+    </div>
+    </footer>
+
+
+    <!-- JS / JQuery -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script> -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="assets/javascript/app.js"></script>
+    <script>
+        // functions being called
+        console.log("before calling ticketMaster()");
+        ticketMaster();
+        console.log("after calling ticketMaster()");
+    </script>
 </body>
+
 </html>
