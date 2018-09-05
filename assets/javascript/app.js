@@ -1,40 +1,27 @@
-
-
 //search button event handler
 $(".material-icons").on("click", function (event) {
+    //event.preventDefault()
+    var inputValue = $('#search').val()
+    //console.log(inputValue);
+    if (inputValue !== '') {
+        console.log(inputValue);
+        //grabbing input from search bar
+        var userInput = $("#search").val().trim();
+        //console.log(userInput);
 
-    //grabbing input from search bar
-    var userInput = $("#search").val().trim();
-    console.log(userInput);
+        // Clear absolutely everything stored in localStorage using localStorage.clear()
+        localStorage.clear();
 
-    // Clear absolutely everything stored in localStorage using localStorage.clear()
-    localStorage.clear();
+        // Store the username into localStorage using "localStorage.setItem"
+        localStorage.setItem("city", userInput);
 
-    // Store the username into localStorage using "localStorage.setItem"
-    localStorage.setItem("city", userInput);
-
-         // Validation
- /* $('#.search').validate({
-      rules:{
-          search:{
-              required: true,
-              search: true
-          }
-      },
-      messages:{
-          search:{
-              required: 'Please enter city'
-          }
-      }
-  });
- */
-     //sending to search page
-
-    $("#enter-link").attr('href', "search.html");
-
+        $("#enter-link").attr('href', "search.html");
+    } else {
+        console.log('Please enter City');
+        $("#search").attr('placeholder', 'Please enter City');
+    }
 
 });
-
 
 
 
@@ -77,7 +64,7 @@ function ticketMaster() {
                 //STREET ADDRESS
                 eventAddress = response._embedded.events[i]._embedded.venues[0].address.line1;
                 var addressInfo = $("<p>").text(eventAddress);
-                console.log("This is event address in ticketMaster: " +eventAddress);
+                console.log("This is event address in ticketMaster: " + eventAddress);
 
 
                 //CITY
@@ -136,7 +123,7 @@ function initMap() {
 function geocodeAddress(geocoder, resultsMap) {
     //var inputAddress = eventAddress;
     console.log("geocodeAddress is called");
-    console.log("This is event address in geocode: " +eventAddress);
+    console.log("This is event address in geocode: " + eventAddress);
     geocoder.geocode({
         'address': inputAddress
     }, function (results, status) {
