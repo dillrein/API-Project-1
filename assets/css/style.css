@@ -194,6 +194,10 @@ input[type=submit] {
     border: 15 none;
 }
 
+#message {
+    font-size: 16px;
+}
+
 /* Table on table.html */
 table {
     font-family: 'Open Sans', sans-serif;
