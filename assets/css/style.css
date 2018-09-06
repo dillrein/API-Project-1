@@ -1,26 +1,50 @@
 body {
     position: relative;
-    background-color: rgb(12, 12, 12);
-}
-
-#mapDiv {
-    height: 600px;
+    background-color:  rgb(12, 12, 12);
 }
 
 .main-wrapper {
-    background-image: url("../images/bimage.jpg");
-    background-position: fixed;
-    background-size: cover;
     height: 100vh;
 }
 
-.nav-wrapper1{
+/* This makes the background image opaque */
+.main-wrapper::after {
+    content: "";
+    background: url(../images/bimage.jpg);
+    background-repeat: no-repeat;
+    background-position: fixed;
+    background-size: cover;
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+  }
+
+/* This is the navbar for all other pages with background color */
+.nav1{
     font-family: 'Open Sans', sans-serif;
     font-size: 70px;
     text-transform: uppercase;
     font-weight: bolder;
     letter-spacing: -4px;
     background-color: rgb(12, 12, 12);
+    clear: both;
+    height: 30%;
+    width: 100%;
+    box-shadow: none;
+}
+
+/* This is the homepage navbar with a transparent background */
+.nav2{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 70px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    letter-spacing: -4px;
+    background-color: transparent;
     clear: both;
     height: 10%;
     width: 100%;
@@ -33,6 +57,7 @@ body {
     text-transform: uppercase;
     font-weight: bolder;
     letter-spacing: -4px;
+    padding-top: 30px;
     padding-left: 30px;
     color: white;
 }
@@ -43,7 +68,7 @@ body {
     text-transform: uppercase;
     font-weight: 300;
     padding-right: 30px;
-    letter-spacing: -1px;
+    letter-spacing: -.5px;
 }
 
 h1 {
@@ -78,13 +103,6 @@ h3 {
     text-transform: uppercase;
 }
 
-nav {
-    width: 500px;
-    margin: 0 auto;
-    background-color: white;
-    color: black;
-}
-
 .footer-copyright {
     bottom: 0;
     font-size: 14px;
@@ -96,11 +114,48 @@ nav {
     padding-top: 50px;
 }
 
+p {
+    color: white;
+}
+
+/* Search results on search.html */
+#mapDiv {
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.shows {
+    border: 5px solid rgb(28, 28, 28);
+    padding: 10px;
+    width: 50%;
+    margin-bottom: 30px;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+}
+
+img {
+    height: auto;
+    width: 400px;
+    float: right;
+}
+
+/* Search box on index.html */
+nav {
+    width: 500px;
+    margin: 0 auto;
+    background-color: white;
+}
+
 #enter-city {
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     text-transform: uppercase;
     font-weight: bold;
+    color: rgb(43, 43, 43);
 }
 
 #enter-link {
@@ -108,12 +163,10 @@ nav {
     font-size: 18px;
     text-transform: uppercase;
     font-weight: bold;
+    color:rgb(43, 43, 43);
 }
 
-p {
-    color: white;
-}
-/* table.html contact page */
+/* Contact form on table.html */
 #contact-form ul {
     margin-bottom: 10px;
 }
@@ -129,6 +182,7 @@ textarea {
     padding: 0 15px;
     font-size: 14px;
     border: 1px solid rgb(230, 222, 222);
+    font-family: 'Open Sans', sans-serif;
 }
 
 input[type=submit] {
@@ -139,11 +193,16 @@ input[type=submit] {
     background: #595e5d;
     border: 15 none;
 }
-/* Table.html, table  */
+
+/* Table on table.html */
 table {
-    font-family: arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     border-collapse: collapse;
     width: 100%;
+}
+input,
+textarea{
+    color: white;
 }
 
 td, th {
@@ -160,19 +219,3 @@ tr:nth-child(even) {
     line-height: 15px;
 }
 
-img {
-    height: auto;
-    width: 400px;
-    float: right;
-}
-
-.shows {
-    border: 5px solid rgb(28, 28, 28);
-    padding: 10px;
-    width: 50%;
-    margin-bottom: 30px;
-    margin-top: auto;
-    margin-left: auto;
-    margin-right: auto;
-    overflow: auto;
-}

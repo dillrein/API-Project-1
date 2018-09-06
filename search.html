@@ -5,49 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-
+    <title>myo͞ozik</title>
+    <link rel="icon" href="../API-Project/assets/images/music_note.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-    <title>Search</title>
 </head>
 
 <body>
-
     <div class="navbar-fixed">
-        <nav class="nav-wrapper1">
-            <div class="nav-wrapper1">
-                <a href="index.html" id="brand-logo" class="brand-logo">Concert Finder</a>
+        <nav class="nav2">
+            <div class="nav2">
+                <a href="index.html" id="brand-logo" class="brand-logo">myo͞ozik</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li>
                         <a href="index.html">HOME</a>
                     </li>
                     <li>
-                        <a href="search.html">RESULTS</a>
+                        <a href="search.html">NEARBY</a>
                     </li>
                     <li>
-                        <a href="table.html">PIN</a>
+                        <a href="table.html">SOCIAL</a>
                     </li>
                 </ul>
-
             </div>
         </nav>
     </div>
 
-    <h2>MAP</h2>
-    <div id="mapDiv"></div>
-
-
-    <h3>Concerts Near You</h3>
     <div class="row">
         <div class="col s12">
         </div>
     </div>
-    <div id="mapDiv">THIS IS A DIV FOR MAP</div>
-    <div id="drop">
 
+    <div id="mapDiv"></div>
+
+    <h2>Concerts near you:</h2>
+    <div id="drop"></div>
+        <br>
         <div class="footer-copyright">
             <div class="container">
                 © 2018 Copyright A.N.D.Y
@@ -58,7 +52,8 @@
 
 
         <!-- JS / JQuery -->
-        <!-- <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script> -->
+        <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+        <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script src="assets/javascript/app.js"></script>
         <script>
