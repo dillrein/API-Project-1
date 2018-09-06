@@ -1,40 +1,29 @@
-//search button function
+//search button event handler
 $(".material-icons").on("click", function (event) {
+    //event.preventDefault()
+    var inputValue = $('#search').val()
+    //console.log(inputValue);
+    if (inputValue !== '') {
+        console.log(inputValue);
+        //grabbing input from search bar
+        var userInput = $("#search").val().trim();
+        //console.log(userInput);
 
-    //grabbing input from search bar
-    var userInput = $("#search").val().trim();
-    console.log(userInput);
+        // Clear absolutely everything stored in localStorage using localStorage.clear()
+        localStorage.clear();
 
-    // Clear absolutely everything stored in localStorage using localStorage.clear()
-    localStorage.clear();
+        // Store the username into localStorage using "localStorage.setItem"
+        localStorage.setItem("city", userInput);
 
-    // Store the username into localStorage using "localStorage.setItem"
-    localStorage.setItem("city", userInput);
-
-    // Validation
-    /* validateForm();
-
-     function validateForm() {
-
-         $('#search').validate({ // initialize the plugin
-             rules: {
-                 field1: {
-                     required: true,
-
-                 }
-             }
-         });
-     }
-*/
-
-
-    //sending to search page
-
-    $("#enter-link").attr('href', "search.html");
-
-
+        $("#enter-link").attr('href', "search.html");
+    } else {
+        console.log('Please enter City');
+        $("#search").attr('placeholder', 'Please enter City');
+    }
 
 });
+
+
 
 // ticketMasterApi = "YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
 //----------------------------------Ticket Master-----------------------------
@@ -61,7 +50,7 @@ function ticketMaster() {
 
                 //ARTIST NAME
                 var artistName = response._embedded.events[i].name;
-                var artistInfo = $("<p>").text(artistName);
+                var artistInfo = $("<p>").text(artistName).attr('style','font-weight:bold');
                 // console.log(artistName + " artist");
 
                 //IMAGE
@@ -96,8 +85,9 @@ function ticketMaster() {
                 showsDiv.append(artistInfo);
                 showsDiv.append(addressInfo);
                 showsDiv.append(cityInfo);
-                showsDiv.append(venueInfo);
                 showsDiv.append(state);
+                showsDiv.append(venueInfo);
+        
 
 
                 // Putting the entire shows above the previous showss
