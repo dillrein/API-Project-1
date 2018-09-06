@@ -124,19 +124,19 @@ function ticketMaster() {
 
                 throw ("NO RECORD HAS BEEN RECEIVED!");
             }
-            //--------------------------- ARSALAN'S SCRIPT BEGINS ---------------------------   
+            
             // This is the end of "for loop"
             console.log("End of foor loop");
             // Calling geocoder right upon finishing the for loop     
-            for (i = 0; i < addressArr.length; i++) {
+            for (i = 0; i < 10; i++) {
                 console.log("EVENT#" + i + " ADDRESS FROM ARRAY: " + addressArr[i]);
-                window.setTimeout(geocodeAddress(addressArr[i]), 1000);
+                geocodeAddress(addressArr[i]);
             }
-            //--------------------------- ARSALAN'S SCRIPT ENDS ---------------------------
+            
         }); // End of AJAX
 } // End of ticketMaster()
 
-//--------------------------- ARSALAN'S SCRIPT BEGINS ---------------------------
+
 var map;
 
 function initMap() {
@@ -152,14 +152,6 @@ function initMap() {
 
 function geocodeAddress(address) {
     var geocoder = new google.maps.Geocoder();
-   
-    geocodeAddress(geocoder, map);
-}
-
-function geocodeAddress(geocoder, resultsMap) {
-    //var inputAddress = eventAddress;
-    console.log("geocodeAddress is called");
-    console.log("This is event address in geocode: " + eventAddress);
     geocoder.geocode({
         'address': address
     }, function (results, status) {
@@ -176,7 +168,7 @@ function geocodeAddress(geocoder, resultsMap) {
         }
     });
 }
-//--------------------------- ARSALAN'S SCRIPT ENDS ---------------------------
+
 
 
 
