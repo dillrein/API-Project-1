@@ -4,7 +4,7 @@ $(".material-icons").on("click", function (event) {
     var inputValue = $('#search').val()
     //console.log(inputValue);
     if (inputValue !== '') {
-        console.log(inputValue);
+        //console.log(inputValue);
         //grabbing input from search bar
         var userInput = $("#search").val().trim();
         //console.log(userInput);
@@ -17,18 +17,16 @@ $(".material-icons").on("click", function (event) {
 
         $("#enter-link").attr('href', "search.html");
     } else {
-        console.log('Please enter City');
+        //console.log('Please enter City');
         $("#search").attr('placeholder', 'Please enter City');
     }
 
 });
 
 
-
-// ticketMasterApi = "YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
 //----------------------------------Ticket Master-----------------------------
 function ticketMaster() {
-    console.log("ticketMaster is called");
+    //console.log("ticketMaster is called");
     var userInput = localStorage.getItem("city")
 
     var tmQueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=" + userInput + "&radius=20&unit=miles&apikey=YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
@@ -40,7 +38,7 @@ function ticketMaster() {
 
     })
         .then(function (response) {
-            // console.log(response);
+            console.log(response);
 
 
             //function areaResults() {
@@ -50,7 +48,7 @@ function ticketMaster() {
 
                 //ARTIST NAME
                 var artistName = response._embedded.events[i].name;
-                var artistInfo = $("<p>").text(artistName).attr('style','font-weight:bold');
+                var artistInfo = $("<p>").text(artistName).attr('style', 'font-weight:bold');
                 // console.log(artistName + " artist");
 
                 //IMAGE
@@ -61,12 +59,11 @@ function ticketMaster() {
                 //STREET ADDRESS
                 eventAddress = response._embedded.events[i]._embedded.venues[0].address.line1;
                 var addressInfo = $("<p>").text(eventAddress);
-                console.log("This is event address in ticketMaster: " + eventAddress);
+                //console.log("This is event address in ticketMaster: " + eventAddress);
 
 
                 //CITY
                 var city = response._embedded.events[i]._embedded.venues[0].city.name;
-                var cityInfo = $("<p>").text(city);
                 // console.log(city + " city");
 
                 //VENUE NAME
@@ -76,21 +73,32 @@ function ticketMaster() {
 
                 //STATE
                 var venueState = response._embedded.events[i]._embedded.venues[0].state.name;
-                var state = $("<p>").text(venueState);
+                var state = $("<p>").text(city + ", " + venueState);
                 // console.log(venueState + " state");
+
+                //TM website link to purchase tickets
+                var tickets = response._embedded.events[i].url
+                var urlTickets = $("<a>").attr("href", tickets).text("Buy Tickets");
+                //console.log(tickets);
+
+                //Date
+                var date = response._embedded.events[i].dates.start.dateTime
+                var dateFormat = "YYYY-MM-DDT00:00:00Z"
+                var newDate = moment(date, dateFormat).format('MMMM Do YYYY');
+                var eventDate = $("<p>").text(newDate);
 
 
 
                 showsDiv.append(imageInfo);
                 showsDiv.append(artistInfo);
                 showsDiv.append(addressInfo);
-                showsDiv.append(cityInfo);
                 showsDiv.append(state);
                 showsDiv.append(venueInfo);
-        
+                showsDiv.append(eventDate);
+                showsDiv.append(urlTickets);
 
 
-                // Putting the entire shows above the previous showss
+                // Putting the entire shows above the previous shows
                 $("#drop").append(showsDiv);
 
             }
@@ -103,7 +111,7 @@ function ticketMaster() {
 
 //--------------------------- GOOGLE BEGINS ---------------------------
 function initMap() {
-    console.log("initmap is called");
+    //console.log("initmap is called");
     var map = new google.maps.Map(document.getElementById('mapDiv'), {
         zoom: 15,
         center: {
@@ -119,8 +127,8 @@ function initMap() {
 
 function geocodeAddress(geocoder, resultsMap) {
     //var inputAddress = eventAddress;
-    console.log("geocodeAddress is called");
-    console.log("This is event address in geocode: " + eventAddress);
+    //console.log("geocodeAddress is called");
+    //console.log("This is event address in geocode: " + eventAddress);
     geocoder.geocode({
         'address': inputAddress
     }, function (results, status) {
@@ -153,8 +161,8 @@ var config = {
     projectId: "group-project-1-fbce8",
     storageBucket: "group-project-1-fbce8.appspot.com",
     messagingSenderId: "114536344919"
-  };
-  firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
 
 var database = firebase.database();
 
@@ -185,9 +193,9 @@ $("#addUser").on("click", function (event) {
 
 });
 
-database.ref().on("child_added", function(childSnapshot) {
+database.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val());
-  
+
     //creating variable that takes info from database
     var userName = childSnapshot.val().firstName;
     var userLast = childSnapshot.val().lastName;
@@ -201,18 +209,18 @@ database.ref().on("child_added", function(childSnapshot) {
     console.log(userEmail);
     console.log(userCity);
     console.log(userMess)
-    
-  
+
+
     // Create the new row
     var newRow = $("<tr>").append(
-      $("<td>").text(userName),
-      $("<td>").text(userLast),
-      $("<td>").text(userEmail),
-      $("<td>").text(userCity),
-      $("<td>").text(userMess),
-      
+        $("<td>").text(userName),
+        $("<td>").text(userLast),
+        $("<td>").text(userEmail),
+        $("<td>").text(userCity),
+        $("<td>").text(userMess),
+
     );
-  
+
     // Append the new row to the table
     $("#employee-table > tbody").append(newRow);
-  });
+});
