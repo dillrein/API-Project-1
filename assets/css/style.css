@@ -173,10 +173,15 @@ input[type=submit] {
     border: 15 none;
 }
 /* Table.html, table  */
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+}
+input,
+textarea{
+    color: white;
 }
 
 td, th {

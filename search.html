@@ -11,8 +11,6 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
     <title>Search</title>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxxASExfHJ3E3zseHXZoiRc53dIAcJjYI&callback=initMap">
-    </script>
 </head>
 
 <body>
@@ -36,11 +34,11 @@
     </div>
 
     <div class="row">
-        <div class "col s12">
+        <div class="col s12">
         </div>
     </div>
 
-    <div id="mapDiv">THIS IS A DIV FOR MAP</div>
+    <div id="mapDiv"></div>
     <h2>Concerts near you:</h2>
     <div id="drop">
 
@@ -55,14 +53,15 @@
 
         <!-- JS / JQuery -->
         <!-- <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script src="assets/javascript/app.js"></script>
         <script>
             // functions being called
-            console.log("before calling ticketMaster()");
             ticketMaster();
-            console.log("after calling ticketMaster()");
         </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxxASExfHJ3E3zseHXZoiRc53dIAcJjYI&callback=initMap"></script>
+
 
 </body>
 
