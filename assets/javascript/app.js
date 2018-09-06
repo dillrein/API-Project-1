@@ -23,14 +23,12 @@ $(".material-icons").on("click", function (event) {
 
 });
 
-
-
 // An array to hold each venue street address upon being received from the server 
 var addressArr = [];
 
 function ticketMaster() {
     // Checking to see if ticketMaster() has been called
-    console.log("TICKET MASTER IS CALLED");
+    //console.log("TICKET MASTER IS CALLED");
     var userInput = localStorage.getItem("city")
 
     var tmQueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=" + userInput + "&radius=20&unit=miles&apikey=YKxjTTGNYd3zG58GRyowVtUuQ4WLVhdd"
@@ -42,167 +40,127 @@ function ticketMaster() {
 
     })
         .then(function (response) {
-            console.log(response);
+           // console.log(response);
+
+            // Making sure the response does contain data
+            if (response._embedded !== undefined) {
+                for (i = 0; i < response._embedded.events.length; i++) {
+                    var showsDiv = $("<div class='shows'>");
+
+                    //ARTIST NAME
+                    if (response._embedded.events[i].name !== undefined) {
+                        var artistName = response._embedded.events[i].name;
+                        var artistInfo = $("<p>").text(artistName);
+                    } else {
+                        console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "ARTIST NAME"');
+                    }
+
+                    //IMAGE
+                    if (response._embedded.events[i].images[1] !== undefined) {
+                        var image = response._embedded.events[i].images[1].url;
+                        var imageInfo = $("<img>").attr("src", image);
+                    } else {
+                        console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "IMAGE"');
+                    }
+
+                    //STREET ADDRESS
+                    if (response._embedded.events[i]._embedded.venues[0].address !== undefined) {
+                        var eventAddress = response._embedded.events[i]._embedded.venues[0].address.line1;
+                        var addressInfo = $("<p>").text(eventAddress);
+                        //console.log("Event#" + i)
+                        //console.log("STREET: " + eventAddress);
+                        addressArr.push(eventAddress);
+                    } else {
+                        console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "STREET ADDRESS"');
+                    }
 
 
-            //function areaResults() {
+                    //CITY
+                    if (response._embedded.events[i]._embedded.venues[0].city !== undefined) {
+                        var city = response._embedded.events[i]._embedded.venues[0].city.name;
+                        //var cityInfo = $("<p>").text(city);
+                        //console.log("CITY: " + city);
+                    } else {
+                        //console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "CITY"');
+                    }
+
+
+                    //VENUE NAME
+                    if (response._embedded.events[i]._embedded.venues[0].name !== undefined) {
+                        var venueName = response._embedded.events[i]._embedded.venues[0].name;
+                        var venueInfo = $("<p>").text(venueName);
+                    } else {
+                        console.log('ERROR: THIS RECORD DOES NOT HAVE ANY VENUE "NAME"');
+                    }
+
+                    //STATE
+                    if (response._embedded.events[i]._embedded.venues[0].state !== undefined) {
+                        var venueState = response._embedded.events[i]._embedded.venues[0].state.name;
+                        var state = $("<p>").text(city + ", " + venueState);
+                        //console.log(venueState + " state");
+
+                    } else {
+                        console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "STATE"');
+                    }
+
+                    //TM website link to purchase tickets
+                    if (response._embedded.events[i].url !== undefined) {
+                        var tickets = response._embedded.events[i].url
+                        var urlTickets = $("<a>").attr("href", tickets).text("Buy Tickets");
+                        //console.log(tickets);
+
+                    } else {
+                        console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "tickets"');
+                    }
+
+                    //Date
+                    if (response._embedded.events[i].url !== undefined) {
+                        var date = response._embedded.events[i].dates.start.dateTime
+                        var dateFormat = "YYYY-MM-DDT00:00:00Z"
+                        var newDate = moment(date, dateFormat).format('MMMM Do YYYY');
+                        var eventDate = $("<p>").text(newDate);
+                    } else {
+                        console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "tickets"');
+                    }
+
+                    showsDiv.append(imageInfo);
+                    showsDiv.append(artistInfo);
+                    showsDiv.append(addressInfo);
+                    showsDiv.append(state);
+                    showsDiv.append(venueInfo);
+                    showsDiv.append(eventDate);
+                    showsDiv.append(urlTickets);
+
+                    // Putting the entire shows above the previous shows
+                    $("#drop").append(showsDiv);
+
+                   // console.log("\n");
+
+                } // End of for 
+            } // End of if()
+            else {
+
+                throw ("NO RECORD HAS BEEN RECEIVED!");
+            }
+
+            // This is the end of "for loop"
+            //console.log("End of foor loop");
+            // Calling geocoder right upon finishing the for loop     
             for (i = 0; i < 10; i++) {
-                // console.log(i)
-                var showsDiv = $("<div class='shows'>");
+                console.log("EVENT#" + i + " ADDRESS FROM ARRAY: " + addressArr[i]);
+                geocodeAddress(addressArr[i]);
+            }
 
-                //ARTIST NAME
-                var artistName = response._embedded.events[i].name;
-                var artistInfo = $("<p>").text(artistName).attr('style', 'font-weight:bold');
-                // console.log(artistName + " artist");
-
-                //IMAGE
-                var image = response._embedded.events[i].images[1].url;
-                var imageInfo = $("<img>").attr("src", image);
-                // console.log("image");
-
-                //STREET ADDRESS
-                eventAddress = response._embedded.events[i]._embedded.venues[0].address.line1;
-                var addressInfo = $("<p>").text(eventAddress);
-                //console.log("This is event address in ticketMaster: " + eventAddress);
-
-
-                //CITY
-                var city = response._embedded.events[i]._embedded.venues[0].city.name;
-                // console.log(city + " city");
-
-                //VENUE NAME
-                var venueName = response._embedded.events[i]._embedded.venues[0].name;
-                var venueInfo = $("<p>").text(venueName);
-                // console.log(venueName + " venue name");
-
-                //STATE
-                var venueState = response._embedded.events[i]._embedded.venues[0].state.name;
-                var state = $("<p>").text(city + ", " + venueState);
-                // console.log(venueState + " state");
-
-                //TM website link to purchase tickets
-                var tickets = response._embedded.events[i].url
-                var urlTickets = $("<a>").attr("href", tickets).text("Buy Tickets");
-                //console.log(tickets);
-
-                //Date
-                var date = response._embedded.events[i].dates.start.dateTime
-                var dateFormat = "YYYY-MM-DDT00:00:00Z"
-                var newDate = moment(date, dateFormat).format('MMMM Do YYYY');
-                var eventDate = $("<p>").text(newDate);
-
-
-                showsDiv.append(imageInfo);
-                showsDiv.append(artistInfo);
-                showsDiv.append(addressInfo);
-                showsDiv.append(state);
-                showsDiv.append(venueInfo);
-                showsDiv.append(eventDate);
-                showsDiv.append(urlTickets);
-
-
-                // Putting the entire shows above the previous shows
-                $("#drop").append(showsDiv);
-
-                // Checking to see if the AJAX request has been made 
-                console.log("AJAX IS CALLED");
-
-                // Making sure the response does contain data
-                if (response._embedded !== undefined) {
-                    for (i = 0; i < response._embedded.events.length; i++) {
-                        var showsDiv = $("<div class='shows'>");
-
-                        //ARTIST NAME
-                        if (response._embedded.events[i].name !== undefined) {
-                            var artistName = response._embedded.events[i].name;
-                            var artistInfo = $("<p>").text(artistName);
-                        } else {
-                            console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "ARTIST NAME"');
-                        }
-
-                        //IMAGE
-                        if (response._embedded.events[i].images[1] !== undefined) {
-                            var image = response._embedded.events[i].images[1].url;
-                            var imageInfo = $("<img>").attr("src", image);
-                        } else {
-                            console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "IMAGE"');
-                        }
-
-                        //STREET ADDRESS
-                        if (response._embedded.events[i]._embedded.venues[0].address !== undefined) {
-                            var eventAddress = response._embedded.events[i]._embedded.venues[0].address.line1;
-                            var addressInfo = $("<p>").text(eventAddress);
-                            console.log("Event#" + i)
-                            console.log("STREET: " + eventAddress);
-                            addressArr.push(eventAddress);
-                        } else {
-                            console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "STREET ADDRESS"');
-                        }
-
-
-                        //CITY
-                        if (response._embedded.events[i]._embedded.venues[0].city !== undefined) {
-                            var city = response._embedded.events[i]._embedded.venues[0].city.name;
-                            var cityInfo = $("<p>").text(city);
-                            console.log("CITY: " + city);
-                        } else {
-                            console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "CITY"');
-                        }
-
-
-                        //VENUE NAME
-                        if (response._embedded.events[i]._embedded.venues[0].name !== undefined) {
-                            var venueName = response._embedded.events[i]._embedded.venues[0].name;
-                            var venueInfo = $("<p>").text(venueName);
-                        } else {
-                            console.log('ERROR: THIS RECORD DOES NOT HAVE ANY VENUE "NAME"');
-                        }
-
-                        //STATE
-                        if (response._embedded.events[i]._embedded.venues[0].state !== undefined) {
-                            var venueState = response._embedded.events[i]._embedded.venues[0].state.name;
-                            var state = $("<p>").text(venueState);
-                            console.log("STATE: " + venueState);
-                        } else {
-                            console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "STATE"');
-                        }
-
-                        showsDiv.append(imageInfo);
-                        showsDiv.append(artistInfo);
-                        showsDiv.append(addressInfo);
-                        showsDiv.append(cityInfo);
-                        showsDiv.append(venueInfo);
-                        showsDiv.append(state);
-
-                        // Putting the entire shows above the previous showss
-                        $("#drop").append(showsDiv);
-
-                        console.log("\n");
-
-                    } // End of for 
-                } // End of if()
-                else {
-
-                    throw ("NO RECORD HAS BEEN RECEIVED!");
-                }
-
-                // This is the end of "for loop"
-                console.log("End of foor loop");
-                // Calling geocoder right upon finishing the for loop     
-                for (i = 0; i < 10; i++) {
-                    console.log("EVENT#" + i + " ADDRESS FROM ARRAY: " + addressArr[i]);
-                    geocodeAddress(addressArr[i]);
-                }
-
-            }; // End of AJAX
         })
-} // End of ticketMaster()
+}; // End of AJAX
+
+// End of ticketMaster()
 
 
 var map;
 
 function initMap() {
-    console.log("INITMAP IS CALLED");
+    //console.log("INITMAP IS CALLED");
     map = new google.maps.Map(document.getElementById('mapDiv'), {
         zoom: 10,
         center: {
@@ -230,7 +188,7 @@ function geocodeAddress(address) {
         }
     });
 }
-//--------------------------- GOOGLE ENDS ---------------------------
+
 
 //saving as global variable to access in google and tm
 var eventAddress;
@@ -255,14 +213,14 @@ var database = firebase.database();
 $("#addUser").on("click", function (event) {
     //form information
     var userName = $("#nameInput").val().trim();
-    var userLast = $("#lastInput").val().trim();
+    //var userLast = $("#lastInput").val().trim();
     var userEmail = $("#emailInput").val().trim();
     var userCity = $("#cityInput").val().trim();
     var userMess = $("#message").val().trim();
 
     var savedInfo = {
         firstName: userName,
-        lastName: userLast,
+        //lastName: userLast,
         email: userEmail,
         city: userCity,
         message: userMess
@@ -271,7 +229,7 @@ $("#addUser").on("click", function (event) {
     database.ref().push(savedInfo);
     // Clears all of the text-boxes
     $("#nameInput").val("");
-    $("#lastInput").val("");
+    //$("#lastInput").val("");
     $("#emailInput").val("");
     $("#cityInput").val("");
     $("#userMess").val("");
@@ -283,14 +241,14 @@ database.ref().on("child_added", function (childSnapshot) {
 
     //creating variable that takes info from database
     var userName = childSnapshot.val().firstName;
-    var userLast = childSnapshot.val().lastName;
+    //var userLast = childSnapshot.val().lastName;
     var userEmail = childSnapshot.val().email;
     var userCity = childSnapshot.val().city;
     var userMess = childSnapshot.val().message;
 
     // console check
     console.log(userName);
-    console.log(userLast);
+    //console.log(userLast);
     console.log(userEmail);
     console.log(userCity);
     console.log(userMess)
@@ -299,13 +257,14 @@ database.ref().on("child_added", function (childSnapshot) {
     // Create the new row
     var newRow = $("<tr>").append(
         $("<td>").text(userName),
-        $("<td>").text(userLast),
+       // $("<td>").text(userLast),
         $("<td>").text(userEmail),
         $("<td>").text(userCity),
         $("<td>").text(userMess),
 
     );
+    console.log("this is a new row", newRow);
 
     // Append the new row to the table
     $("#employee-table > tbody").append(newRow);
-})
+});
