@@ -3,18 +3,27 @@ body {
     background-color:  rgb(12, 12, 12);
 }
 
-#mapDiv {
-    width: 300px;
-}
-
 .main-wrapper {
-    background-image: url("../images/bimage.jpg");
-    background-repeat: no-repeat;
-    background-position: fixed;
-    background-size: cover;
     height: 100vh;
 }
 
+/* This makes the background image opaque */
+.main-wrapper::after {
+    content: "";
+    background: url(../images/bimage.jpg);
+    background-repeat: no-repeat;
+    background-position: fixed;
+    background-size: cover;
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+  }
+
+/* This is the navbar for all other pages with background color */
 .nav1{
     font-family: 'Open Sans', sans-serif;
     font-size: 70px;
@@ -28,6 +37,7 @@ body {
     box-shadow: none;
 }
 
+/* This is the homepage navbar with a transparent background */
 .nav2{
     font-family: 'Open Sans', sans-serif;
     font-size: 70px;
@@ -47,6 +57,7 @@ body {
     text-transform: uppercase;
     font-weight: bolder;
     letter-spacing: -4px;
+    padding-top: 30px;
     padding-left: 30px;
     color: white;
 }
@@ -103,27 +114,16 @@ h3 {
     padding-top: 50px;
 }
 
-#enter-city {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-#enter-link {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
 p {
     color: white;
 }
-img {
-    height: auto;
-    width: 400px;
-    float: right;
+
+/* Search results on search.html */
+#mapDiv {
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+    margin-top: 50px;
 }
 
 .shows {
@@ -137,16 +137,36 @@ img {
     overflow: auto;
 }
 
-/* index.html search box */
+img {
+    height: auto;
+    width: 400px;
+    float: right;
+}
 
+/* Search box on index.html */
 nav {
     width: 500px;
     margin: 0 auto;
-    background-color: rgb(43, 43, 43);
-    color: white;
+    background-color: white;
 }
 
-/* table.html contact page */
+#enter-city {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: rgb(43, 43, 43);
+}
+
+#enter-link {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color:rgb(43, 43, 43);
+}
+
+/* Contact form on table.html */
 #contact-form ul {
     margin-bottom: 10px;
 }
@@ -162,6 +182,7 @@ textarea {
     padding: 0 15px;
     font-size: 14px;
     border: 1px solid rgb(230, 222, 222);
+    font-family: 'Open Sans', sans-serif;
 }
 
 input[type=submit] {
@@ -172,10 +193,10 @@ input[type=submit] {
     background: #595e5d;
     border: 15 none;
 }
-/* Table.html, table  */
 
+/* Table on table.html */
 table {
-    font-family: arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     border-collapse: collapse;
     width: 100%;
 }

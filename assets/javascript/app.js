@@ -106,7 +106,7 @@ function ticketMaster() {
                     //TM website link to purchase tickets
                     if (response._embedded.events[i].url !== undefined) {
                         var tickets = response._embedded.events[i].url
-                        var urlTickets = $("<a>").attr("href", tickets).text("Buy Tickets");
+                        var urlTickets = $("<a>").attr("href", tickets).attr("target", "_blank").text("Buy Tickets");
                         //console.log(tickets);
 
                     } else {
