@@ -147,7 +147,7 @@ function geocodeAddress(geocoder, resultsMap) {
 }
 //--------------------------- GOOGLE ENDS ---------------------------
 
-
+//saving as global variable to access in google and tm
 var eventAddress;
 
 
@@ -201,7 +201,7 @@ database.ref().on("child_added", function (childSnapshot) {
     var userLast = childSnapshot.val().lastName;
     var userEmail = childSnapshot.val().email;
     var userCity = childSnapshot.val().city;
-    var userMess = childSpapshot.val().message;
+    var userMess = childSnapshot.val().message;
 
     // console check
     console.log(userName);
