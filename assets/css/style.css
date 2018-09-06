@@ -1,26 +1,40 @@
 body {
     position: relative;
-    background-color: rgb(12, 12, 12);
+    background-color:  rgb(12, 12, 12);
 }
 
 #mapDiv {
-    height: 600px;
+    width: 300px;
 }
 
 .main-wrapper {
     background-image: url("../images/bimage.jpg");
+    background-repeat: no-repeat;
     background-position: fixed;
     background-size: cover;
     height: 100vh;
 }
 
-.nav-wrapper1{
+.nav1{
     font-family: 'Open Sans', sans-serif;
     font-size: 70px;
     text-transform: uppercase;
     font-weight: bolder;
     letter-spacing: -4px;
     background-color: rgb(12, 12, 12);
+    clear: both;
+    height: 30%;
+    width: 100%;
+    box-shadow: none;
+}
+
+.nav2{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 70px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    letter-spacing: -4px;
+    background-color: transparent;
     clear: both;
     height: 10%;
     width: 100%;
@@ -43,7 +57,7 @@ body {
     text-transform: uppercase;
     font-weight: 300;
     padding-right: 30px;
-    letter-spacing: -1px;
+    letter-spacing: -.5px;
 }
 
 h1 {
@@ -78,13 +92,6 @@ h3 {
     text-transform: uppercase;
 }
 
-nav {
-    width: 500px;
-    margin: 0 auto;
-    background-color: white;
-    color: black;
-}
-
 .footer-copyright {
     bottom: 0;
     font-size: 14px;
@@ -113,6 +120,32 @@ nav {
 p {
     color: white;
 }
+img {
+    height: auto;
+    width: 400px;
+    float: right;
+}
+
+.shows {
+    border: 5px solid rgb(28, 28, 28);
+    padding: 10px;
+    width: 50%;
+    margin-bottom: 30px;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+}
+
+/* index.html search box */
+
+nav {
+    width: 500px;
+    margin: 0 auto;
+    background-color: rgb(43, 43, 43);
+    color: white;
+}
+
 /* table.html contact page */
 #contact-form ul {
     margin-bottom: 10px;
@@ -160,19 +193,3 @@ tr:nth-child(even) {
     line-height: 15px;
 }
 
-img {
-    height: auto;
-    width: 400px;
-    float: right;
-}
-
-.shows {
-    border: 5px solid rgb(28, 28, 28);
-    padding: 10px;
-    width: 50%;
-    margin-bottom: 30px;
-    margin-top: auto;
-    margin-left: auto;
-    margin-right: auto;
-    overflow: auto;
-}

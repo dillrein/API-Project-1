@@ -110,8 +110,9 @@ function ticketMaster() {
                     showsDiv.append(artistInfo);
                     showsDiv.append(addressInfo);
                     showsDiv.append(cityInfo);
-                    showsDiv.append(venueInfo);
                     showsDiv.append(state);
+                    showsDiv.append(venueInfo);
+            
 
                     // Putting the entire shows above the previous showss
                     $("#drop").append(showsDiv);
