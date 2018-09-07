@@ -22,7 +22,7 @@ $(".material-icons").on("click", function (event) {
     }
 
 });
-
+//---------------------------------------Ticketmaster-------------------------------s
 // An array to hold each venue street address upon being received from the server 
 var addressArr = [];
 
@@ -117,7 +117,7 @@ function ticketMaster() {
                     if (response._embedded.events[i].url !== undefined) {
                         var date = response._embedded.events[i].dates.start.dateTime
                         var dateFormat = "YYYY-MM-DDT00:00:00Z"
-                        var newDate = moment(date, dateFormat).format('MMMM Do YYYY');
+                        var newDate = moment(date, dateFormat).format('MMMM Do, YYYY');
                         var eventDate = $("<p>").text(newDate);
                     } else {
                         console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "tickets"');
@@ -156,7 +156,7 @@ function ticketMaster() {
 
 // End of ticketMaster()
 
-
+//----------------------------Google-------------------------------------
 var map;
 
 function initMap() {
@@ -213,14 +213,12 @@ var database = firebase.database();
 $("#addUser").on("click", function (event) {
     //form information
     var userName = $("#nameInput").val().trim();
-    //var userLast = $("#lastInput").val().trim();
     var userEmail = $("#emailInput").val().trim();
     var userCity = $("#cityInput").val().trim();
     var userMess = $("#message").val().trim();
 
     var savedInfo = {
         firstName: userName,
-        //lastName: userLast,
         email: userEmail,
         city: userCity,
         message: userMess
@@ -232,7 +230,7 @@ $("#addUser").on("click", function (event) {
     //$("#lastInput").val("");
     $("#emailInput").val("");
     $("#cityInput").val("");
-    $("#userMess").val("");
+    $("#message").val("");
 
 });
 
@@ -247,23 +245,22 @@ database.ref().on("child_added", function (childSnapshot) {
     var userMess = childSnapshot.val().message;
 
     // console check
-    console.log(userName);
+    // console.log(userName);
     //console.log(userLast);
-    console.log(userEmail);
-    console.log(userCity);
-    console.log(userMess)
+    // console.log(userEmail);
+    // console.log(userCity);
+    // console.log(userMess)
 
 
     // Create the new row
     var newRow = $("<tr>").append(
         $("<td>").text(userName),
-       // $("<td>").text(userLast),
         $("<td>").text(userEmail),
         $("<td>").text(userCity),
         $("<td>").text(userMess),
 
     );
-    console.log("this is a new row", newRow);
+   // console.log("this is a new row", newRow);
 
     // Append the new row to the table
     $("#employee-table > tbody").append(newRow);
