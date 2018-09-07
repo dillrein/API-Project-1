@@ -140,6 +140,10 @@ input[type=submit] {
     border: 15 none;
 }
 /* Table.html, table  */
+.contact-form {
+    color:yellow;
+}
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
