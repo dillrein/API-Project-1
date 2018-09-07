@@ -117,7 +117,7 @@ function ticketMaster() {
                     if (response._embedded.events[i].url !== undefined) {
                         var date = response._embedded.events[i].dates.start.dateTime
                         var dateFormat = "YYYY-MM-DDT00:00:00Z"
-                        var newDate = moment(date, dateFormat).format('MMMM Do YYYY');
+                        var newDate = moment(date, dateFormat).format('MMMM Do, YYYY');
                         var eventDate = $("<p>").text(newDate);
                     } else {
                         console.log('ERROR: THIS RECORD DOES NOT HAVE ANY "tickets"');
@@ -232,7 +232,7 @@ $("#addUser").on("click", function (event) {
     //$("#lastInput").val("");
     $("#emailInput").val("");
     $("#cityInput").val("");
-    $("#userMess").val("");
+    $("#message").val("");
 
 });
 
